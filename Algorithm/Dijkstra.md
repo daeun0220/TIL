@@ -12,5 +12,24 @@
 6. 우선순위큐가 빈 후, 도착점에 기록된 비용 반환
 
 
-<p align="center"><img src="../images/Algorithm/DijkstraCode.png" width=60% height=20%></p>
+<p align="center"><img src="../Images/Algorithm/DijkstraCode.png" width=60% height=20%></p>
+
+### 코드
+
+```python
+def dijkstra(graph, start, final) :
+   costs = {}
+   pq = []
+   heapq.heappush(pq, (0, start))
+
+   while pq :
+      cur_cost, cur_v = heapq.heappop(pq)
+      if cur_v not in costs :
+         costs[cur_v] = cur_cost
+         for cost, next_v in graph[cur_v] :
+            next_cost = cur_cost + cost
+            heapq.heappush(pq,(next_cost, next_v))
+
+   return costs[final]   
+```
 
